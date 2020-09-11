@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Hello {{user.username}}</h1>
+    <p class="lead">Simple twitter clone by shivam</p>
+    <hr class="my-4">
+    <p>Click below to tweet</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'create' %}" role="button">Tweet</a>
+  </div>
+
+
+<div class="container">
+{% for tweet in object_list %}
+<div class="card">
+    <div class="card-header">
+<a href="/profile"><h3>{{tweet.uname}}</h3></a>
+<p>{{tweet.datetime}}</p>
+</div>
+<div class="card-body">
+<p class="card-text">{{tweet.text}}</p>
+
+<a href="{% url 'tweetupdate' tweet.id %}"><button class="btn btn-outline-info">Update</button></a>
+<a href="{% url 'tweetdelete' tweet.id %}"><button class="btn btn-outline-info">Delete</button></a>
+</div>
+{% endfor %}
+</div>
+{% endblock content %}
